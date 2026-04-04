@@ -5,12 +5,16 @@ import taskImage from "../assets/images/task.jpg";
 import teamImage from "../assets/images/team.png";
 import analyticsImage from "../assets/images/an.jpg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
-  const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
+  const goToLogin = ()=>{
+    navigate("/login")
+  }
   return (
     <div className="home-page">
-      <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+      <Header isLogin={false} />
 
       {/* HERO SECTION */}
       <section className="hero">
@@ -27,9 +31,13 @@ export default function HomePage() {
           </p>
 
           <div className="hero-actions">
-            <button className="btn-primary">Get Started Free</button>
-
-            <button className="btn-secondary">Watch Demo</button>
+            <button className="btn-primary" onClick={goToLogin}>Get Started Free</button>
+            
+          <a href="/documents/pmt.pdf" download>
+          <button className="btn-secondary">
+            View Documentation
+          </button>
+          </a>
           </div>
         </div>
       </section>

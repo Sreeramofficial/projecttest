@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-export default function Header({ isLogin , setIsLogin}) {
+export default function Header({ isLogin}) {
   return (
     <header className="header">
       <div className="header-container">
@@ -13,13 +13,14 @@ export default function Header({ isLogin , setIsLogin}) {
         </div>
 
         {/* Navigation */}
+        {!isLogin && (
         <nav className="nav-links">
           <Link to="/signup">Sign Up</Link>
           <Link to="/login">Login</Link>
           <Link to="/help">Help</Link>
-        </nav>
+        </nav>)}
 
-        {!isLogin && (
+        {isLogin && (
           <div className="header-actions">
             <input
               type="text"

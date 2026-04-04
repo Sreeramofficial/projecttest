@@ -1,9 +1,14 @@
 import React from "react";
 import "./Dashboard.css";
+import Header from "./Header";
+
 
 export default function Dashboard() {
+  
   return (
     <div className="dashboard">
+     
+      
       {/* Sidebar */}
       <div className="sidebar">
         <h2 className="logo">MyWorkspace</h2>
@@ -17,15 +22,17 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
+      
       <div className="main">
+         <Header isLogin={true} />
         {/* Header */}
-        <div className="dashboard-header">
+        {/* <div className="dashboard-header">
           <input type="text" placeholder="Search..." />
           <div className="profile">
             <img src="https://i.pravatar.cc/40" alt="user" />
-            <span>Amanda P.</span>
+            <span>Arun</span>
           </div>
-        </div>
+        </div> */}
 
         {/* Cards */}
         <div className="cards">
