@@ -4,14 +4,28 @@ import heroImage from "../assets/images/hero.jpg";
 import taskImage from "../assets/images/task.jpg";
 import teamImage from "../assets/images/team.png";
 import analyticsImage from "../assets/images/an.jpg";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const goToLogin = ()=>{
-    navigate("/login")
+  const featuresRef = useRef(null);
+
+  const goToSignUp = ()=>{
+    navigate("/signup")
   }
+  const goToHelp = () =>{
+    navigate("/help")
+  }
+
+  const goToFeedback = () => {
+    navigate("/feedback")
+  }
+
+  const scrollToFeatures = () => {
+    featuresRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <div className="home-page">
       <Header isLogin={false} />
@@ -31,7 +45,7 @@ export default function HomePage() {
           </p>
 
           <div className="hero-actions">
-            <button className="btn-primary" onClick={goToLogin}>Get Started Free</button>
+            <button className="btn-primary" onClick={goToSignUp}>Get Started Free</button>
             
           <a href="/documents/pmt.pdf" download>
           <button className="btn-secondary">
@@ -43,7 +57,7 @@ export default function HomePage() {
       </section>
 
       {/* FEATURES */}
-      <section className="features">
+      <section className="features" ref={featuresRef}>
         <h2 className="section-title">Why Choose ProjectFlow?</h2>
 
         <div className="features-grid">
@@ -75,7 +89,7 @@ export default function HomePage() {
       <section className="cta-section">
         <h2>Ready to Start?</h2>
         <p>Join thousands of teams using ProjectFlow</p>
-        <button className="btn-cta">Start Free Trial</button>
+        <button className="btn-cta" onClick={goToSignUp}>Start Free Trial</button>
       </section>
 
       {/* FOOTER */}
@@ -90,13 +104,13 @@ export default function HomePage() {
             <h4>Product</h4>
             <ul>
               <li>
-                <a href="#">Features</a>
+                <a href="#features" onClick={(e) => { e.preventDefault(); scrollToFeatures(); }}>Features</a>
               </li>
               <li>
-                <a href="#">Pricing</a>
+                <a href="#">Connect Us</a>
               </li>
               <li>
-                <a href="#">Security</a>
+               <a href="" onClick={goToHelp}>Help</a>
               </li>
             </ul>
           </div>
@@ -108,10 +122,10 @@ export default function HomePage() {
                 <a href="#">About</a>
               </li>
               <li>
-                <a href="#">Contact</a>
+                <a href="" onClick={goToFeedback}>Feedback</a>
               </li>
               <li>
-                <a href="#">Blog</a>
+                <a href="#">Linkedin</a>
               </li>
             </ul>
           </div>

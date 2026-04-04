@@ -10,6 +10,8 @@ import Projects from "./components/Projects";
 import Timesheet from "./components/Timesheet";
 import Analytics from "./components/Analytics";
 import Settings from "./components/Settings";
+import Feedback from "./components/Feedback";
+
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/timesheet" element={<Timesheet />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/feedback" element={<Feedback/>} />
+          
         </Routes>
       </div>
     </Router>

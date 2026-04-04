@@ -59,13 +59,13 @@ export default function Header({ isLogin }) {
               {showDropdown && (
                 <div className="dropdown-menu">
                   <button className="dropdown-item" onClick={handleSettings}>
-                    ⚙️ Settings
+                     Settings
                   </button>
                   <button
                     className="dropdown-item logout"
                     onClick={handleLogout}
                   >
-                    🚪 Logout
+                     Logout
                   </button>
                 </div>
               )}
