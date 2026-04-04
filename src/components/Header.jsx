@@ -1,0 +1,42 @@
+import { Link } from "react-router-dom";
+import "./Header.css";
+
+export default function Header({ isLogin , setIsLogin}) {
+  return (
+    <header className="header">
+      <div className="header-container">
+        <div className="logo-section">
+          <div className="logo">
+            {/* <span className="logo-icon">📊</span> */}
+            <h1>ProjectFlow.com</h1>
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <nav className="nav-links">
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/help">Help</Link>
+        </nav>
+
+        {!isLogin && (
+          <div className="header-actions">
+            <input
+              type="text"
+              placeholder="Search projects..."
+              className="search-bar"
+            />
+            <button className="btn-create">+ New Project</button>
+
+            <div className="user-profile">
+              <img
+                src="https://api.dicebear.com/7.x/avataaars/svg?seed=User"
+                alt="User"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+}
