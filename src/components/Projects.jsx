@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import Header from "./Header";
 
-export default function Dashboard() {
+export default function Projects() {
   const navigate = useNavigate();
 
   const handleNavigation = (path) => {
@@ -55,68 +55,18 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
-
       <div className="main">
         <Header isLogin={true} />
-        {/* Header */}
-        {/* <div className="dashboard-header">
-          <input type="text" placeholder="Search..." />
-          <div className="profile">
-            <img src="https://i.pravatar.cc/40" alt="user" />
-            <span>Arun</span>
-          </div>
-        </div> */}
-
-        {/* Cards */}
-        <div className="cards">
-          <div className="card orange">
-            <h3>Tasks Due</h3>
-            <p>
-              <b>8</b> Overdue
-            </p>
-            <p>
-              <b>12</b> Upcoming
-            </p>
-          </div>
-
-          <div className="card blue">
-            <h3>Team Activity</h3>
-            <p>
-              <b>5</b> Online
-            </p>
-            <p>
-              <b>3</b> Offline
-            </p>
-          </div>
-
-          <div className="card green">
-            <h3>Progress</h3>
-            <p>
-              <b>72%</b> On Track
-            </p>
-          </div>
-
-          <div className="card purple">
-            <h3>Time Tracking</h3>
-            <p>
-              <b>18h</b> Logged
-            </p>
-            <p>
-              <b>4h</b> This Week
-            </p>
-          </div>
-        </div>
-
-        {/* Content Section */}
+        {/* <h1>📁 Projects</h1> */}
         <div className="content">
-          {/* Projects */}
           <div className="projects">
-            <h3>Current Projects</h3>
+            <h3>All Projects</h3>
             <table>
               <thead>
                 <tr>
-                  <th>Project</th>
+                  <th>Project Name</th>
                   <th>Status</th>
+                  <th>Progress</th>
                   <th>Due Date</th>
                 </tr>
               </thead>
@@ -126,6 +76,7 @@ export default function Dashboard() {
                   <td>
                     <span className="status progress">In Progress</span>
                   </td>
+                  <td>65%</td>
                   <td>May 15, 2022</td>
                 </tr>
                 <tr>
@@ -133,6 +84,7 @@ export default function Dashboard() {
                   <td>
                     <span className="status hold">On Hold</span>
                   </td>
+                  <td>40%</td>
                   <td>June 10, 2022</td>
                 </tr>
                 <tr>
@@ -140,6 +92,7 @@ export default function Dashboard() {
                   <td>
                     <span className="status planning">Planning</span>
                   </td>
+                  <td>20%</td>
                   <td>July 5, 2022</td>
                 </tr>
                 <tr>
@@ -147,43 +100,11 @@ export default function Dashboard() {
                   <td>
                     <span className="status completed">Completed</span>
                   </td>
+                  <td>100%</td>
                   <td>April 20, 2022</td>
                 </tr>
               </tbody>
             </table>
-          </div>
-
-          {/* Team Activity */}
-          <div className="activity">
-            <h3>Team Activity</h3>
-            <ul>
-              <li>Sarah L. - Working on Landing Page</li>
-              <li>John D. - Updated Marketing Plan</li>
-              <li>Emily R. - Design Review</li>
-              <li>Michael T. - Offline</li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="bottom">
-          <div className="tasks">
-            <h3>My Tasks</h3>
-            <ul>
-              <li>Finish Draft Presentation</li>
-              <li>Follow up with Client</li>
-              <li>Review Design Mockups</li>
-              <li>Schedule Team Meeting</li>
-            </ul>
-          </div>
-
-          <div className="milestones">
-            <h3>Upcoming Milestones</h3>
-            <ul>
-              <li>Beta Release - May 20</li>
-              <li>Campaign Launch - June 5</li>
-              <li>Q3 Planning - June 25</li>
-            </ul>
           </div>
         </div>
       </div>
