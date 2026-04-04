@@ -3,7 +3,25 @@ import "./Auth.css";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const goToDashboard = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    // Basic validation
+    if (!email || !password) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address");
+      return;
+    }
     navigate("/dashboard");
   };
 
@@ -15,11 +33,18 @@ export default function SignIn() {
           Go to Home
         </Link>
 
-        <form>
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
+        <form onSubmit={handleSubmit}>
+          <input type="email" name="email" placeholder="Email" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
 
-          <button className="auth-btn" onClick={goToDashboard}>Login</button>
+          <button type="submit" className="auth-btn">
+            Login
+          </button>
         </form>
 
         <p>
