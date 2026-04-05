@@ -22,6 +22,10 @@ export default function HomePage() {
     navigate("/feedback")
   }
 
+  const goToContact = () => {
+    navigate("/contact")
+  }
+
   const scrollToFeatures = () => {
     featuresRef.current?.scrollIntoView({ behavior: "smooth" });
   }
@@ -107,7 +111,7 @@ export default function HomePage() {
                 <a href="#features" onClick={(e) => { e.preventDefault(); scrollToFeatures(); }}>Features</a>
               </li>
               <li>
-                <a href="#">Connect Us</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); goToContact(); }}>Connect Us</a>
               </li>
               <li>
                <a href="" onClick={goToHelp}>Help</a>

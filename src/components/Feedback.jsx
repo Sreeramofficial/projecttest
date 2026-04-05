@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Feedback.css";
 
 export default function Feedback() {
@@ -10,6 +11,7 @@ export default function Feedback() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,16 +41,14 @@ export default function Feedback() {
     console.log("Feedback submitted:", formData);
     setSubmitted(true);
 
-    // Reset form after 2 seconds
+    // Redirect to home after 2 seconds
     setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        feedbackType: "bug",
-        message: "",
-      });
-      setSubmitted(false);
+      navigate("/");
     }, 2000);
+  };
+
+  const handleGoHome = () => {
+    navigate("/");
   };
 
   return (
@@ -59,7 +59,7 @@ export default function Feedback() {
 
         {submitted ? (
           <div className="success-message">
-            <p>✓ Thank you for your feedback!</p>
+            <p>Thank you for your feedback!</p>
             <p>We appreciate your input.</p>
           </div>
         ) : (
