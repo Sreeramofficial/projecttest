@@ -26,6 +26,13 @@ export default function Timesheet() {
       return;
     }
 
+    const hours = parseInt(newEntry.hours);
+    
+    if (hours < 1 || hours > 24) {
+      alert("Hours must be between 1 and 24");
+      return;
+    }
+
     setTimesheetData([...timesheetData, newEntry]);
     setNewEntry({ date: "", hours: "", project: "", task: "" });
     setShowForm(false);
@@ -34,10 +41,30 @@ export default function Timesheet() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    
+    // Restrict hours input to maximum 24
+    if (name === "hours") {
+      if (value > 24) {
+        return; // Prevent input if greater than 24
+      }
+    }
+
     setNewEntry((prev) => ({
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleSubmitTimesheet = () => {
+    if (timesheetData.length === 0) {
+      alert("Please add at least one timesheet entry before submitting");
+      return;
+    }
+
+    alert("Timesheet submitted successfully!");
+    // Add your submit logic here (e.g., send to backend)
+    console.log("Submitted timesheet:", timesheetData);
+    setTimesheetData([]);
   };
 
   const totalHours = timesheetData.reduce((sum, item) => sum + parseInt(item.hours) || 0, 0);
@@ -147,13 +174,15 @@ export default function Timesheet() {
                     />
                   </div>
                   <div>
-                    <label>Hours</label>
+                    <label>Hours (Max 24)</label>
                     <input
                       type="number"
                       name="hours"
                       value={newEntry.hours}
                       onChange={handleInputChange}
-                      placeholder="Enter hours"
+                      placeholder="Enter hours (1-24)"
+                      min="1"
+                      max="24"
                       style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
                     />
                   </div>
@@ -220,6 +249,25 @@ export default function Timesheet() {
                 ))}
               </tbody>
             </table>
+
+            {timesheetData.length > 0 && (
+              <button
+                onClick={handleSubmitTimesheet}
+                style={{
+                  marginTop: "20px",
+                  padding: "12px 30px",
+                  backgroundColor: "#ff9800",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                  fontWeight: "bold",
+                }}
+              >
+                Submit Timesheet
+              </button>
+            )}
           </div>
         </div>
       </div>
