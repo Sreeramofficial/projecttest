@@ -115,7 +115,7 @@ export default function Timesheet() {
 
       {/* Main Content */}
       <div className="main">
-        <Header isLogin={true} />
+        <Header isLogin={true} showSearch={false} />
         {/* <h1>📅 Timesheet</h1> */}
 
         <div className="cards">

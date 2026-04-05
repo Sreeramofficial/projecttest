@@ -56,7 +56,7 @@ export default function Analytics() {
 
       {/* Main Content */}
       <div className="main">
-        <Header isLogin={true} />
+        <Header isLogin={true} showSearch={false} />
         {/* <h1>📊 Analytics & Reports</h1> */}
 
         <div className="cards">

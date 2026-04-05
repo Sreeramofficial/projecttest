@@ -69,7 +69,7 @@ export default function Settings() {
 
       {/* Main Content */}
       <div className="main">
-        <Header isLogin={true} />
+        <Header isLogin={true} showSearch={false} />
         {/* <h1>⚙️ Settings</h1> */}
 
         <div className="content">

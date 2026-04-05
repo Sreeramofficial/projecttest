@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Dashboard.css";
 import Header from "./Header";
@@ -7,11 +7,66 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Get userId and email from Login component
   const { userId, email } = location.state || { userId: null, email: null };
+
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  // Sample projects data
+  const projects = [
+    {
+      id: 1,
+      name: "Website Redesign",
+      status: "In Progress",
+      dueDate: "May 15, 2022",
+      description: "Complete redesign of company website with modern UI/UX",
+      team: "Sarah L., John D.",
+      progress: "65%",
+    },
+    {
+      id: 2,
+      name: "Marketing Campaign",
+      status: "On Hold",
+      dueDate: "June 10, 2022",
+      description: "Q2 marketing campaign strategy and execution",
+      team: "Emily R., Michael T.",
+      progress: "40%",
+    },
+    {
+      id: 3,
+      name: "Product Launch",
+      status: "Planning",
+      dueDate: "July 5, 2022",
+      description: "Launch new product line with full market analysis",
+      team: "Sarah L., Emily R.",
+      progress: "20%",
+    },
+    {
+      id: 4,
+      name: "App Development",
+      status: "Completed",
+      dueDate: "April 20, 2022",
+      description: "Mobile app development for iOS and Android",
+      team: "John D., Michael T.",
+      progress: "100%",
+    },
+  ];
 
   const handleNavigation = (path) => {
     navigate(path);
+  };
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+  };
+
+  const closePopup = () => {
+    setSelectedProject(null);
+  };
+
+  const handleSearchFromHeader = (searchResults) => {
+    if (searchResults.length === 1) {
+      handleProjectClick(searchResults[0]);
+    }
   };
 
   return (
@@ -60,9 +115,7 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <div className="main">
-        <Header isLogin={true} logedUser={userId} />
-        
-    
+        <Header isLogin={true} logedUser={userId} projects={projects} onProjectSelect={handleProjectClick} />
 
         {/* Cards */}
         <div className="cards">
@@ -118,34 +171,21 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Website Redesign</td>
-                  <td>
-                    <span className="status progress">In Progress</span>
-                  </td>
-                  <td>May 15, 2022</td>
-                </tr>
-                <tr>
-                  <td>Marketing Campaign</td>
-                  <td>
-                    <span className="status hold">On Hold</span>
-                  </td>
-                  <td>June 10, 2022</td>
-                </tr>
-                <tr>
-                  <td>Product Launch</td>
-                  <td>
-                    <span className="status planning">Planning</span>
-                  </td>
-                  <td>July 5, 2022</td>
-                </tr>
-                <tr>
-                  <td>App Development</td>
-                  <td>
-                    <span className="status completed">Completed</span>
-                  </td>
-                  <td>April 20, 2022</td>
-                </tr>
+                {projects.map((project) => (
+                  <tr
+                    key={project.id}
+                    onClick={() => handleProjectClick(project)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <td>{project.name}</td>
+                    <td>
+                      <span className={`status ${project.status.toLowerCase().replace(" ", "-")}`}>
+                        {project.status}
+                      </span>
+                    </td>
+                    <td>{project.dueDate}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -184,6 +224,38 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Project Popup */}
+      {selectedProject && (
+        <div className="popup-overlay" onClick={closePopup}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <button className="popup-close" onClick={closePopup}>
+              ✕
+            </button>
+            <h2>{selectedProject.name}</h2>
+            <div className="popup-body">
+              <p>
+                <b>Description:</b> {selectedProject.description}
+              </p>
+              <p>
+                <b>Status:</b>{" "}
+                <span className={`status ${selectedProject.status.toLowerCase().replace(" ", "-")}`}>
+                  {selectedProject.status}
+                </span>
+              </p>
+              <p>
+                <b>Progress:</b> {selectedProject.progress}
+              </p>
+              <p>
+                <b>Due Date:</b> {selectedProject.dueDate}
+              </p>
+              <p>
+                <b>Team Members:</b> {selectedProject.team}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
