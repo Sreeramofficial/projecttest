@@ -1,10 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Dashboard.css";
 import Header from "./Header";
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Get userId and email from Login component
+  const { userId, email } = location.state || { userId: null, email: null };
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -55,17 +59,10 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
-
       <div className="main">
-        <Header isLogin={true} />
-        {/* Header */}
-        {/* <div className="dashboard-header">
-          <input type="text" placeholder="Search..." />
-          <div className="profile">
-            <img src="https://i.pravatar.cc/40" alt="user" />
-            <span>Arun</span>
-          </div>
-        </div> */}
+        <Header isLogin={true} logedUser={userId} />
+        
+    
 
         {/* Cards */}
         <div className="cards">
@@ -80,12 +77,12 @@ export default function Dashboard() {
           </div>
 
           <div className="card blue">
-            <h3>Team Activity</h3>
+            <h3>Team Availability</h3>
             <p>
               <b>5</b> Online
             </p>
             <p>
-              <b>3</b> Offline
+              <b>3</b> On Leave
             </p>
           </div>
 

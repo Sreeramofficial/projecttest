@@ -7,22 +7,23 @@ export default function SignIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const email = e.target.email.value;
+    const userId = e.target.userId.value;
     const password = e.target.password.value;
 
     // Basic validation
-    if (!email || !password) {
+    if (!userId || !password) {
       alert("Please fill in all fields");
       return;
-    }
+     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert("Please enter a valid email address");
-      return;
-    }
-    navigate("/dashboard");
+    // // User ID validation (ensure it's a number)
+    // if (isNaN(  userId)) {
+    //   alert("Please enter a valid User ID");
+    //   return;
+    // }
+
+    // Pass logged user ID to Dashboard
+    navigate("/dashboard", { state: { userId: userId } });
   };
 
   return (
@@ -34,7 +35,12 @@ export default function SignIn() {
         </Link>
 
         <form onSubmit={handleSubmit}>
-          <input type="email" name="email" placeholder="Email" required />
+          <input 
+            type="text" 
+            name="userId" 
+            placeholder="User ID" 
+            required 
+          />
           <input
             type="password"
             name="password"

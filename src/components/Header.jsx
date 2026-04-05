@@ -2,13 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 
-export default function Header({ isLogin }) {
+export default function Header({ isLogin,logedUser }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+  const userName = logedUser; // Constant user name
 
   const handleLogout = () => {
-    // Clear user session/localStorage if needed
-    localStorage.removeItem("userToken");
     navigate("/login");
   };
 
@@ -43,9 +42,12 @@ export default function Header({ isLogin }) {
               placeholder="Search projects..."
               className="search-bar"
             />
-            <button className="btn-create">+ New Project</button>
 
             <div className="user-profile-container">
+              <div className="welcome-text">
+               <strong>{userName}</strong>
+              </div>
+
               <div
                 className="user-profile"
                 onClick={() => setShowDropdown(!showDropdown)}

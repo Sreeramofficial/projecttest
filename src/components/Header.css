@@ -19,6 +19,32 @@
   justify-content: space-between;
   align-items: center;
 }
+/* ...existing code... */
+
+/* WELCOME TEXT */
+
+.welcome-text {
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.welcome-text strong {
+  font-weight: 700;
+  color: #ffffff;
+} 
+
+/* USER PROFILE CONTAINER */
+
+.user-profile-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ...existing code... */
 
 /* LOGO */
 
